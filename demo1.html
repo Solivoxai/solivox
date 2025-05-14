@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velvet Roast - Modern Café</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Lato&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Lato', sans-serif;
+    }
+
+    body {
+      background-color: #f8f6f3;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slideshow {
+      height: 100%;
+    }
+
+    .slideshow img {
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+
+    nav a {
+      margin: 10px 15px;
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #b48a78;
+    }
+
+    section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #5c4033;
+      margin-bottom: 1.5rem;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .menu-box {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .menu-box h3 {
+      font-family: 'Playfair Display', serif;
+      color: #7a5c47;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-box ul {
+      list-style: none;
+    }
+
+    .menu-box li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .carousel {
+      background: #fff5f0;
+      border-radius: 10px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .carousel-cell {
+      width: 80%;
+      margin-right: 20px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .instagram-feed {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-top: 1rem;
+    }
+
+    .instagram-feed img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin: 0.5rem 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    form button {
+      padding: 0.75rem 2rem;
+      background: #5c4033;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    form button:hover {
+      background: #7a5c47;
+    }
+
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    .footer-links {
+      margin-top: 1rem;
+    }
+
+    .footer-links a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+      }
+
+      .carousel-cell {
+        width: 100%;
+      }
+    }
+
+.header-overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slideshow img {
+  width: 100%;
+  height: 90vh;
+  object-fit: cover;
+  filter: brightness(80%);
+}
+
+.cafe-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.6);
+  padding: 20px 40px;
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  color: #5c4033;
+  border-radius: 10px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+}
+.menu-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.flip-card {
+  background: transparent;
+  width: 250px;
+  height: 250px;
+  perspective: 1000px;
+}
+
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-front {
+  background-color: #e3d7c1;
+  color: #4a2e2b;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.flip-back {
+  background-color: #fff8f0;
+  color: #333;
+  transform: rotateY(180deg);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.flip-back ul {
+  list-style: none;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.flip-back li {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-overlay">
+      <div class="slideshow main-carousel" data-flickity='{"autoPlay": 3000, "wrapAround": true}'>
+        <img src="img/pexels-igor-starkov-233202-1307698.jpg" alt="Café ambiance">
+        <img src="img/dRh4gfTy8uxDt5w3uHKwnN.jpg" alt="Luxury setting">
+        <img src="img/bastain3.jpg" alt="Ambiance">
+      </div>
+      <h1 class="cafe-title">Velvet Roast Café.</h1>
+    </div>
+  </header>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#menu">Menu</a>
+    <a href="#offers">Offers</a>
+    <a href="#reservation">Reserve</a>
+    <a href="#instagram">Instagram</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Welcome to Velvet Roast – a luxurious escape into rich flavors, ambient lighting, and curated culinary experiences. We celebrate slow coffee, artisan meals, and soulful conversations.</p>
+  </section>
+
+  <section id="menu">
+    <h2>Our Menu</h2>
+    <div class="menu-grid">
+      
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <h3>Beverages</h3>
+          </div>
+          <div class="flip-back">
+            <ul>
+              <li><span>Gold Leaf Cappuccino</span><span>₹450</span></li>
+              <li><span>French Press Brew</span><span>₹320</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <h3>Mains</h3>
+          </div>
+          <div class="flip-back">
+            <ul>
+              <li><span>Truffle Mushroom Risotto</span><span>₹750</span></li>
+              <li><span>Sun-dried Tomato Pasta</span><span>₹690</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">
+            <h3>Desserts</h3>
+          </div>
+          <div class="flip-back">
+            <ul>
+              <li><span>Crème Brûlée Tart</span><span>₹390</span></li>
+              <li><span>Hazelnut Éclair</span><span>₹320</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  
+
+  <section id="offers">
+    <h2>Today's Specials</h2>
+    <div class="carousel main-carousel" data-flickity='{"autoPlay": 5000, "wrapAround": true}'>
+      <div class="carousel-cell">Buy 1 Get 1 Free – On all Espresso drinks before 11am!</div>
+      <div class="carousel-cell">Flat 20% off for couples – Reserve a table for two and enjoy romance with coffee.</div>
+      <div class="carousel-cell">Weekend Brunch Combo – Only ₹899 with dessert platter!</div>
+    </div>
+  </section>
+
+  <section id="reservation">
+    <h2>Reserve a Table</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="datetime-local" required>
+      <textarea placeholder="Special Requests (optional)"></textarea>
+      <button type="submit">Book Now</button>
+    </form>
+  </section>
+
+  <section id="instagram">
+    <h2>Instagram Feed</h2>
+    <div class="instagram-feed">
+      <img src="img/6-quan-ca-phe-view-dep-o-ha-long-qne4dbzw.jpg" alt="Instagram post">
+      <img src="img/PROD_chennai_1693402248806.jpg" alt="Instagram post">
+      <img src="img/istockphoto-476490558-612x612.jpg" alt="Instagram post">
+      <img src="img/pexels-igor-starkov-233202-1307698.jpg" alt="Instagram post">
+      <img src="img/customer-reviews-google-shopping.jpg" alt="Instagram post">
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Velvet Roast Café. Follow us on Instagram @velvetroast</p>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#offers">Offers</a>
+      <a href="#reservation">Reserve</a>
+      <a href="#instagram">Instagram</a>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+</body>
+</html>

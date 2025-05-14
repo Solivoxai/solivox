@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Align & Thrive – Fitness Coach</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #fdfdfb;
+      color: #2f2f2f;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .hero {
+      background: url('images/hero.jpg') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.55);
+      padding: 2.5rem;
+      text-align: center;
+      border-radius: 16px;
+      color: #fff;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .overlay h1 {
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .overlay p {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.9rem 2rem;
+      background: #7dcfa2;
+      color: white;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #64b88c;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .about img {
+      width: 180px;
+      border-radius: 50%;
+      margin-top: 1rem;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+
+    .services .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      width: 280px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .testimonials blockquote {
+      font-style: italic;
+      max-width: 600px;
+      margin: auto;
+      margin-top: 2rem;
+    }
+
+    .booking form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .booking input,
+    .booking select,
+    .booking button {
+      padding: 0.8rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .booking button {
+      background: #7dcfa2;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .booking button:hover {
+      background: #64b88c;
+    }
+
+    .blog article {
+      max-width: 700px;
+      margin: 2rem auto;
+      text-align: left;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .blog img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .overlay h1 {
+        font-size: 2.2rem;
+      }
+      .services .cards {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .hero-slider {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: fadeSlide 24s infinite;
+}
+
+.slide1 {
+  background-image: url('https://images.unsplash.com/photo-1552196563-55cd4e45efb3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  animation-delay: 0s;
+}
+
+.slide2 {
+  background-image: url('img/img1.jpg');
+  animation-delay: 8s;
+}
+
+.slide3 {
+  background-image: url('https://images.unsplash.com/photo-1554306274-f23873d2a99c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  animation-delay: 12s;
+}
+
+.slide4 {
+  background-image: url('https://images.unsplash.com/photo-1546484959-febc4c4e251f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  animation-delay: 18s;
+}
+
+@keyframes fadeSlide {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  25% { opacity: 1; }
+  33% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Overlay styling */
+.overlay {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.overlay p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.btn {
+  padding: 1rem 2rem;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e85b50;
+}
+
+
+  </style>
+</head>
+<body>
+
+    <header class="hero-slider">
+        <div class="slide slide1"></div>
+        <div class="slide slide2"></div>
+        <div class="slide slide3"></div>
+        <div class="slide slide4"></div>
+        <div class="overlay">
+          <h1>Align & Thrive</h1>
+          <p>Personal Training & Yoga for Body, Mind & Soul</p>
+          <a href="#booking" class="btn">Book a Session</a>
+        </div>
+      </header>
+      
+      
+  <section class="about">
+    <h2>Meet Your Coach</h2>
+    <p>Hi, I'm Maya – certified fitness and yoga coach, here to guide you through personalized journeys of strength, flexibility, and mindfulness.</p>
+    <img src="img/img5.jpg" alt="Coach Maya" />
+  </section>
+
+  <section class="services">
+    <h2>Service Packages</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="img/img4.jpg" alt="Starter Flow" />
+        <h3>Starter Flow</h3>
+        <p>2 sessions/week + basic plan</p>
+        <span>99/month</span>
+      </div>
+      <div class="card">
+        <img src="img/img3.jpg" alt="Pro Path" />
+        <h3>Pro Path</h3>
+        <p>3 sessions/week + meal guidance</p>
+        <span>149/month</span>
+      </div>
+      <div class="card">
+        <img src="img/img2.jpg" alt="Zen Master" />
+        <h3>Zen Master</h3>
+        <p>Daily yoga + custom coaching</p>
+        <span>249/month</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="testimonials">
+    <h2>What Clients Say</h2>
+    <blockquote>
+      “Maya's sessions transformed my mindset. I feel stronger, calmer, and more centered every day.”  
+      <cite>– Priya S.</cite>
+    </blockquote>
+  </section>
+
+  <section class="booking" id="booking">
+    <h2>Book a Session</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <select required>
+        <option value="">Select a Package</option>
+        <option>Starter Flow</option>
+        <option>Pro Path</option>
+        <option>Zen Master</option>
+      </select>
+      <input type="date" required />
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </section>
+
+  <section class="blog">
+    <h2>Latest Blog</h2>
+    <article>
+      <img src="img/img1.jpg" alt="Morning Yoga Poses" />
+      <h3>5 Morning Poses to Awaken Your Energy</h3>
+      <p>Stretch into serenity with these gentle poses to begin your day with balance and focus...</p>
+      <a href="#">Read More</a>
+    </article>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Align & Thrive. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
